@@ -1,6 +1,6 @@
 import cv2
 
-DRAW_RECTANGLE = True
+DRAW_RECTANGLE = False
 RGB_COLOR_FRAME = (0, 255, 0)  # Green
 
 trained_face_data = cv2.CascadeClassifier(
