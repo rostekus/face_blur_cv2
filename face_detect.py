@@ -25,13 +25,14 @@ while True:
 
                 # get the rectangle img around all the faces
                
-                
+                cv2.rectangle(frame, (x,y), (x+w,y+h), (255,255,255))
+
                 
                 sub_face = frame[y:y+h, x:x+w]
                 height, width = sub_face.shape[:2]
                 w, h = (16, 16)
-                temp = cv2.resize(sub_face, (w, h), interpolation=cv2.INTER_LINEAR)
-                sub_face = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
+                #temp = cv2.resize(sub_face, (w, h), interpolation=cv2.INTER_LINEAR)
+                #sub_face = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
                 # apply a gaussian blur on this new recangle image
                 # merge this blurry rectangle to our final image
                 result_image[y:y+sub_face.shape[0], x:x+sub_face.shape[1]] = sub_face
