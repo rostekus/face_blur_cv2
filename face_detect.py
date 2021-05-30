@@ -1,7 +1,7 @@
 import cv2
 
-DRAW_RECTANGLE = True
-
+DRAW_RECTANGLE = True 
+RGB_COLOR_FRAME = (0,255,0) # Green
 
 
 trained_face_data = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -23,21 +23,21 @@ while True:
                 # Get the origin co-ordinates and the length and width till where the face extends
                 x, y, w, h = [ v for v in f ]
 
-                # get the rectangle img around all the faces
-               
-                cv2.rectangle(frame, (x,y), (x+w,y+h), (255,255,255))
+                # Get the rectangle img around all the faces
+                if DRAW_RECTANGLE:
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), RGB_COLOR_FRAME, 2)
 
                 
                 sub_face = frame[y:y+h, x:x+w]
                 height, width = sub_face.shape[:2]
                 w, h = (16, 16)
-                #temp = cv2.resize(sub_face, (w, h), interpolation=cv2.INTER_LINEAR)
-                #sub_face = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
-                # apply a gaussian blur on this new recangle image
-                # merge this blurry rectangle to our final image
+                temp = cv2.resize(sub_face, (w, h), interpolation=cv2.INTER_LINEAR)
+                sub_face = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
+                # Merge face image our final image
                 result_image[y:y+sub_face.shape[0], x:x+sub_face.shape[1]] = sub_face
-        cv2.imshow('hello',result_image)
+   
     key = cv2.waitKey(1)
+    cv2.imshow('hello',result_image)
 
         
     if key == ord('q'):
@@ -47,9 +47,3 @@ webcam.release()
 
 
       
-
-
-
-
-img = cv2.imread('apl.jpeg')
-print("hello")
