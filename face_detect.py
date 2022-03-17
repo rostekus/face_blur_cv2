@@ -41,7 +41,7 @@ while True:
                              x:x + sub_face.shape[1]] = sub_face
 
     key = cv2.waitKey(1)
-    cv2.imshow('hello', result_image)
+    cv2.imshow('Camera', result_image)
 
     if key == ord('q'):
         break
